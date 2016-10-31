@@ -5,8 +5,7 @@ from apiclient.errors import HttpError
 from oauth2client.tools import argparser
 import datetime
 import isodate
-import geopy
-
+from geopy.distance import great_circle
 
 # Set DEVELOPER_KEY to the API key value from the APIs & auth > Registered apps
 # tab of
@@ -24,10 +23,10 @@ def normalize(value, minX, maxX):
 def video_distance(video, location, locW, views, viewsW, date, dateW, length, lengthW):
     locDistanceNorm = viewsDistanceNorm = dateDistanceNorm = lengthDistanceNorm = 0
     if locW != 0:
-        locDistance = great_circle(video["location"], location).meters()
+        locDistance = great_circle(video["location"], location).miles
         locDistanceNorm = normalize(locDistance, 0, 6371000)
     if viewsW != 0:
-        viewsDistance = abs(video["views"] - views)
+        viewsDistance = abs(int(video["views"]) - views)
         viewsDistanceNorm = normalize(viewsDistance, 0, 1000000)
     if dateW != 0:
         dateDistance = abs(isodate.parse_datetime(video["date"]) - date)
@@ -64,13 +63,11 @@ def search(keyword, location=None, locW=0, views=None, viewsW=0,
         search_videos.append(search_result["id"]["videoId"])
     video_ids = ",".join(search_videos)
 
-    part_list = []
+    part_list = ["snippet"]
     if location:
         part_list.append("recordingDetails")
     if views:
         part_list.append("statistics")
-    if date:
-        part_list.append("snippet")
     if length:
         part_list.append("contentDetails")
 
@@ -92,6 +89,7 @@ def search(keyword, location=None, locW=0, views=None, viewsW=0,
                             )
         video = {
             "title": video_result["snippet"]["title"],
+            "thumbnail": video_result["snippet"]["thumbnails"]["default"]["url"],
             "location": location_searched,
             "views": video_result.get("statistics", {}).get("viewCount", None),
             "date": video_result.get("snippet", {}).get("publishedAt", None),
@@ -99,15 +97,19 @@ def search(keyword, location=None, locW=0, views=None, viewsW=0,
             }
         videos.append(video)
 
+    unsorted_videos = videos.copy()
     videos.sort(key=lambda video: video_distance(video, location, locW, 
                 views, viewsW, date, dateW, length, lengthW))
-    
+
+    for video in unsorted_videos:
+        print(video)
+    print ("\n\n\n\n")
     for video in videos:
         print(video)
 
 if __name__ == "__main__":
 
     try:
-        search(keyword="dog", location = (37.42307,-122.08427), date=datetime.datetime.now(datetime.timezone.utc), dateW=1)
+        search(keyword="dog", length=10, lengthW=0.5, views=100, viewsW=0.5, location = (37.42307,-122.08427), locW=0.5, date=datetime.datetime.now(datetime.timezone.utc), dateW=0.5)
     except HttpError as e:
         print ("An HTTP error %d occurred:\n%s" % (e.resp.status, e.content))
