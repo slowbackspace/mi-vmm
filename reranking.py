@@ -5,6 +5,7 @@ from apiclient.errors import HttpError
 from oauth2client.tools import argparser
 import datetime
 import isodate
+from pprint import pprint
 from geopy.distance import great_circle
 
 # Set DEVELOPER_KEY to the API key value from the APIs & auth > Registered apps
@@ -23,7 +24,7 @@ def normalize(value, minX, maxX):
 def video_distance(video, location, locW, views, viewsW, date, dateW, length, lengthW):
     locDistanceNorm = viewsDistanceNorm = dateDistanceNorm = lengthDistanceNorm = 0
     if locW != 0:
-        locDistance = great_circle(video["location"], location).miles
+        locDistance = great_circle(video["location"], location).meters
         locDistanceNorm = normalize(locDistance, 0, 6371000)
     if viewsW != 0:
         viewsDistance = abs(int(video["views"]) - views)
@@ -105,7 +106,7 @@ def search(keyword, location=None, locW=0, views=None, viewsW=0,
         print(video)
     print ("\n\n\n\n")
     for video in videos:
-        print(video)
+        pprint(video)
 
 if __name__ == "__main__":
 
