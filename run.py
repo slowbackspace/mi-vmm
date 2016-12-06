@@ -22,9 +22,13 @@ def index_page():
 def result_page():
     keyword = request.form.get("keyword", None)
     date = request.form.get("date", None)
-    length = request.form.get("length", None)
+    duration = request.form.get("duration", None)
     views = request.form.get("views", None)
     lat, lon = request.form.get("lat", None), request.form.get("lon", None)
+    weight_views = request.form.get("weight-views", 0)
+    weight_date = request.form.get("weight-date", 0)
+    weight_duration = request.form.get("weight-duration", 0)
+    weight_location = request.form.get("weight-location", 0)
 
     # call reranking function
 
