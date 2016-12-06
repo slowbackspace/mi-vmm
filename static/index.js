@@ -25,4 +25,28 @@ $(document).ready(function(){
     // Do stuff
 	});
 
+    //var rangeSlider = document.getElementById('slider-range');
+
+    function createSlider(element) {
+        var slider = noUiSlider.create(element, {
+            start: 0,
+            range: {
+                'min': 0,
+                'max': 1
+            }
+        });
+
+       slider.on('slide', function( values, handle ) {
+            // on change of the slider, find the next element and set its value
+            console.log(event.target);
+            $(event.target).closest('.slider').next().text(values[handle]);
+            $(event.target).closest('.slider').next().next().val(values[handle]);
+        });
+
+    }
+
+    $(".slider").each(function(index, element) {
+        createSlider(element);
+    })
+
 });
