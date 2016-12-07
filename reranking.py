@@ -31,7 +31,7 @@ def great_circle_distance(lat1, lon1, lat2, lon2):
 
 
 def normalize(value, minX, maxX):
-    if maxX = minX:
+    if maxX == minX:
         return 1
     return (value-minX)/(maxX-minX)
 
@@ -55,7 +55,7 @@ def video_distance(video, location, locW, views, viewsW, date, dateW, length, le
         dateDistance = abs(isodate.parse_datetime(video["date"]) - date).total_seconds()
         dateDistanceNorm = normalize(dateDistance, minDistances["date"], maxDistances["date"])
     if lengthW != 0:
-        durationSec = isodate.parse_duration(video["length"]).total_seconds()
+        durationSec = int(video["length"])
         lengthDistance = abs(durationSec - length)
         lengthDistanceNorm = normalize(lengthDistance, minDistances["length"], maxDistances["length"])
 
@@ -86,20 +86,10 @@ def search(keyword, location=None, locW=0, views=None, viewsW=0,
         search_videos.append(search_result["id"]["videoId"])
     video_ids = ",".join(search_videos)
 
-    part_list = ["snippet"]
-    if location:
-        part_list.append("recordingDetails")
-    if views:
-        part_list.append("statistics")
-    if length:
-        part_list.append("contentDetails")
-
-    partString = ",".join(part_list)
-
     # Call the videos.list method to retrieve location details for each video.
     video_response = youtube.videos().list(
         id=video_ids,
-        part=partString
+        part="snippet,recordingDetails,statistics,contentDetails"
     ).execute()
 
     videos = []
@@ -109,13 +99,14 @@ def search(keyword, location=None, locW=0, views=None, viewsW=0,
                             video_result["recordingDetails"]["location"]["latitude"],
                             video_result["recordingDetails"]["location"]["longitude"]
                             )
+        length_searched = video_result.get("contentDetails", {}).get("duration", None)
         video = {
             "title": video_result["snippet"]["title"],
             "thumbnail": video_result["snippet"]["thumbnails"]["default"]["url"],
             "location": location_searched,
             "views": video_result.get("statistics", {}).get("viewCount", None),
             "date": video_result.get("snippet", {}).get("publishedAt", None),
-            "length": video_result.get("contentDetails", {}).get("duration", None)
+            "length": None if not length_searched else isodate.parse_duration(length_searched).total_seconds()
             }
         videos.append(video)
 
@@ -143,7 +134,7 @@ def search(keyword, location=None, locW=0, views=None, viewsW=0,
         minDistances["date"] = maxDistances["date"] = abs(isodate.parse_datetime(videos[0]["date"]) - date).total_seconds()
 
     if lengthW > 0:
-        durationSec = isodate.parse_duration(videos[0]["length"]).total_seconds()
+        durationSec = int(videos[0]["length"])
         minDistances["length"] = maxDistances["length"] = abs(durationSec - length)
 
     for video in videos:
@@ -161,7 +152,7 @@ def search(keyword, location=None, locW=0, views=None, viewsW=0,
             minDistances["date"], maxDistances["date"] = find_min_max(act_distance, minDistances["date"], maxDistances["date"])
 
         if lengthW > 0:
-            durationSec = isodate.parse_duration(video["length"]).total_seconds()
+            durationSec = int(video["length"])
             act_distance = abs(durationSec - length)
             minDistances["length"], maxDistances["length"] = find_min_max(act_distance, minDistances["length"], maxDistances["length"])
 
@@ -182,6 +173,6 @@ def search(keyword, location=None, locW=0, views=None, viewsW=0,
 if __name__ == "__main__":
 
     try:
-        search(keyword="dog", length=10, lengthW=0.5, views=100, viewsW=0.5, location = (37.42307,-122.08427), locW=0.5, date=datetime.datetime.now(datetime.timezone.utc), dateW=0.5)
+        search(keyword="dog", views=100, viewsW=0.5, location = (37.42307,-122.08427), locW=0.5, date=datetime.datetime.now(datetime.timezone.utc), dateW=0.5)
     except HttpError as e:
         print ("An HTTP error %d occurred:\n%s" % (e.resp.status, e.content))
