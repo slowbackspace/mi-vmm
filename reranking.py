@@ -68,7 +68,7 @@ def search(keyword, location=None, locW=0, views=None, viewsW=0,
     youtube = build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION, 
                     developerKey=DEVELOPER_KEY)
 
-    if location is None:
+    if location is None or location==(0,0):
         locW = 0
     if views is None:
         viewsW = 0
@@ -83,8 +83,8 @@ def search(keyword, location=None, locW=0, views=None, viewsW=0,
         q=keyword,
         type="video",
         part="id,snippet",
-        location=None if not location else ",".join(map(str, location)),
-        locationRadius=None if not location else "1000km",
+        location=None if locW==0 else ",".join(map(str, location)),
+        locationRadius=None if locW==0 else "1000km",
         maxResults=50
     ).execute()
 
@@ -104,20 +104,22 @@ def search(keyword, location=None, locW=0, views=None, viewsW=0,
     videos = []
     # Add each result to the list, and then display the list of matching videos.
     for video_result in video_response.get("items", []):
-        location_searched = None if not location else (
-                            video_result["recordingDetails"]["location"]["latitude"],
-                            video_result["recordingDetails"]["location"]["longitude"]
+        location_searched = None if locW==0 else (
+                            video_result["recordingDetails"]["location"].get("latitude",None),
+                            video_result["recordingDetails"]["location"].get("longitude",None)
                             )
         length_searched = video_result.get("contentDetails", {}).get("duration", None)
         video = {
             "url": "https://www.youtube.com/watch?v=" + video_result["id"],
             "title": video_result["snippet"]["title"],
             "thumbnail": video_result["snippet"]["thumbnails"]["default"]["url"],
-            "location": location_searched,
+            "location": None if location_searched==(None,None) else location_searched,
             "views": video_result.get("statistics", {}).get("viewCount", None),
             "date": video_result.get("snippet", {}).get("publishedAt", None),
             "length": None if length_searched is None else isodate.parse_duration(length_searched).total_seconds()
             }
+        if video["location"] is None:
+            locW=0
         videos.append(video)
 
     minDistances = {
@@ -183,6 +185,6 @@ def search(keyword, location=None, locW=0, views=None, viewsW=0,
 if __name__ == "__main__":
 
     try:
-        search(keyword="dog", views=100, viewsW=0.5, lengthW=1, location = (37.42307,-122.08427), locW=0.5, date=datetime.datetime.now(datetime.timezone.utc), dateW=0.5)
+        search(keyword="dog", views=100, viewsW=0, lengthW=1, location = (0.0001,0.00001), locW=0.5, date=datetime.datetime.now(datetime.timezone.utc), dateW=0.5)
     except HttpError as e:
         print ("An HTTP error %d occurred:\n%s" % (e.resp.status, e.content))
