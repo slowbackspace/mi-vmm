@@ -31,6 +31,8 @@ def great_circle_distance(lat1, lon1, lat2, lon2):
 
 
 def normalize(value, minX, maxX):
+    if maxX = minX:
+        return 1
     return (value-minX)/(maxX-minX)
 
 def find_min_max(value, act_min, act_max):
