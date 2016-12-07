@@ -68,6 +68,15 @@ def search(keyword, location=None, locW=0, views=None, viewsW=0,
     youtube = build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION, 
                     developerKey=DEVELOPER_KEY)
 
+    if location is None:
+        locW = 0
+    if views is None:
+        viewsW = 0
+    if date is None:
+        dateW = 0
+    if length is None:
+        lengthW = 0
+
     # Call the search.list method to retrieve results matching the specified
     # query term.
     search_response = youtube.search().list(
@@ -107,7 +116,7 @@ def search(keyword, location=None, locW=0, views=None, viewsW=0,
             "location": location_searched,
             "views": video_result.get("statistics", {}).get("viewCount", None),
             "date": video_result.get("snippet", {}).get("publishedAt", None),
-            "length": None if not length_searched else isodate.parse_duration(length_searched).total_seconds()
+            "length": None if length_searched is None else isodate.parse_duration(length_searched).total_seconds()
             }
         videos.append(video)
 
@@ -174,6 +183,6 @@ def search(keyword, location=None, locW=0, views=None, viewsW=0,
 if __name__ == "__main__":
 
     try:
-        search(keyword="dog", views=100, viewsW=0.5, location = (37.42307,-122.08427), locW=0.5, date=datetime.datetime.now(datetime.timezone.utc), dateW=0.5)
+        search(keyword="dog", views=100, viewsW=0.5, lengthW=1, location = (37.42307,-122.08427), locW=0.5, date=datetime.datetime.now(datetime.timezone.utc), dateW=0.5)
     except HttpError as e:
         print ("An HTTP error %d occurred:\n%s" % (e.resp.status, e.content))
