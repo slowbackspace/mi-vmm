@@ -102,14 +102,17 @@ def search(keyword, location=None, locW=0, views=None, viewsW=0,
     ).execute()
 
     videos = []
+    i=0
     # Add each result to the list, and then display the list of matching videos.
     for video_result in video_response.get("items", []):
+        i += 1
         location_searched = None if locW==0 else (
                             video_result["recordingDetails"]["location"].get("latitude",None),
                             video_result["recordingDetails"]["location"].get("longitude",None)
                             )
         length_searched = video_result.get("contentDetails", {}).get("duration", None)
         video = {
+            "seq" : i,
             "url": "https://www.youtube.com/watch?v=" + video_result["id"],
             "title": video_result["snippet"]["title"],
             "thumbnail": video_result["snippet"]["thumbnails"]["default"]["url"],
