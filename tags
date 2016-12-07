@@ -4,33 +4,44 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.8	//
-DEBUG	run.py	/^    DEBUG = True,$/;"	kind:variable	line:12
-DEVELOPER_KEY	reranking.py	/^DEVELOPER_KEY = "AIzaSyAYMg3XQ2J1trdyr5jgypW-Dbn4xufRPS0"$/;"	kind:variable	line:15
+DEBUG	run.py	/^    DEBUG = True,$/;"	kind:variable	line:14
+DEVELOPER_KEY	reranking.py	/^DEVELOPER_KEY = "AIzaSyAYMg3XQ2J1trdyr5jgypW-Dbn4xufRPS0"$/;"	kind:variable	line:17
 Flask	run.py	/^from flask import Flask$/;"	kind:namespace	line:5
 HttpError	reranking.py	/^from apiclient.errors import HttpError$/;"	kind:namespace	line:4
 Response	run.py	/^from flask import render_template, send_from_directory, Response, url_for, request$/;"	kind:namespace	line:6
-SECRET_KEY	run.py	/^    SECRET_KEY = 'e535b3c89a1288055e335fba78cc5b84c5a8ef5620b6b3f1'$/;"	kind:variable	line:13
-TEMPLATES_AUTO_RELOAD	run.py	/^    TEMPLATES_AUTO_RELOAD = True,$/;"	kind:variable	line:11
-YOUTUBE_API_SERVICE_NAME	reranking.py	/^YOUTUBE_API_SERVICE_NAME = "youtube"$/;"	kind:variable	line:16
-YOUTUBE_API_VERSION	reranking.py	/^YOUTUBE_API_VERSION = "v3"$/;"	kind:variable	line:17
-app	run.py	/^app = Flask(__name__)$/;"	kind:variable	line:9
+SECRET_KEY	run.py	/^    SECRET_KEY = 'e535b3c89a1288055e335fba78cc5b84c5a8ef5620b6b3f1'$/;"	kind:variable	line:15
+TEMPLATES_AUTO_RELOAD	run.py	/^    TEMPLATES_AUTO_RELOAD = True,$/;"	kind:variable	line:13
+YOUTUBE_API_SERVICE_NAME	reranking.py	/^YOUTUBE_API_SERVICE_NAME = "youtube"$/;"	kind:variable	line:18
+YOUTUBE_API_VERSION	reranking.py	/^YOUTUBE_API_VERSION = "v3"$/;"	kind:variable	line:19
+app	run.py	/^app = Flask(__name__)$/;"	kind:variable	line:11
 argparser	reranking.py	/^from oauth2client.tools import argparser$/;"	kind:namespace	line:5
+asin	reranking.py	/^from math import radians, cos, sin, asin, sqrt$/;"	kind:namespace	line:10
 build	reranking.py	/^from apiclient.discovery import build$/;"	kind:namespace	line:3
+cos	reranking.py	/^from math import radians, cos, sin, asin, sqrt$/;"	kind:namespace	line:10
 datetime	reranking.py	/^import datetime$/;"	kind:namespace	line:6
-favicon	run.py	/^def favicon():$/;"	kind:function	line:36
-geopy	reranking.py	/^import geopy$/;"	kind:namespace	line:8
-index_page	run.py	/^def index_page():$/;"	kind:function	line:18
+datetime	run.py	/^import datetime$/;"	kind:namespace	line:8
+favicon	run.py	/^def favicon():$/;"	kind:function	line:64
+find_min_max	reranking.py	/^def find_min_max(value, act_min, act_max):$/;"	kind:function	line:38
+great_circle	reranking.py	/^from geopy.distance import great_circle$/;"	kind:namespace	line:9
+great_circle_distance	reranking.py	/^def great_circle_distance(lat1, lon1, lat2, lon2):$/;"	kind:function	line:21
+index_page	run.py	/^def index_page():$/;"	kind:function	line:34
 isodate	reranking.py	/^import isodate$/;"	kind:namespace	line:7
 json	run.py	/^import json$/;"	kind:namespace	line:4
-normalize	reranking.py	/^def normalize(value, minX, maxX):$/;"	kind:function	line:20
+normalize	reranking.py	/^def normalize(value, minX, maxX):$/;"	kind:function	line:33
 os	run.py	/^import os$/;"	kind:namespace	line:3
-page_not_found	run.py	/^def page_not_found(e):$/;"	kind:function	line:41
+parse_float_or_none	run.py	/^def parse_float_or_none(value):$/;"	kind:function	line:19
+parse_float_or_zero	run.py	/^def parse_float_or_zero(value):$/;"	kind:function	line:26
+pprint	reranking.py	/^from pprint import pprint$/;"	kind:namespace	line:8
+radians	reranking.py	/^from math import radians, cos, sin, asin, sqrt$/;"	kind:namespace	line:10
 render_template	run.py	/^from flask import render_template, send_from_directory, Response, url_for, request$/;"	kind:namespace	line:6
 request	run.py	/^from flask import render_template, send_from_directory, Response, url_for, request$/;"	kind:namespace	line:6
+reranking	run.py	/^import reranking$/;"	kind:namespace	line:7
 reranking.py	reranking.py	1;"	kind:file	line:1
-result_page	run.py	/^def result_page():$/;"	kind:function	line:22
+result_page	run.py	/^def result_page():$/;"	kind:function	line:39
 run.py	run.py	1;"	kind:file	line:1
-search	reranking.py	/^def search(keyword, location=None, locW=0, views=None, viewsW=0, $/;"	kind:function	line:44
+search	reranking.py	/^def search(keyword, location=None, locW=0, views=None, viewsW=0, $/;"	kind:function	line:66
 send_from_directory	run.py	/^from flask import render_template, send_from_directory, Response, url_for, request$/;"	kind:namespace	line:6
+sin	reranking.py	/^from math import radians, cos, sin, asin, sqrt$/;"	kind:namespace	line:10
+sqrt	reranking.py	/^from math import radians, cos, sin, asin, sqrt$/;"	kind:namespace	line:10
 url_for	run.py	/^from flask import render_template, send_from_directory, Response, url_for, request$/;"	kind:namespace	line:6
-video_distance	reranking.py	/^def video_distance(video, location, locW, views, viewsW, date, dateW, length, lengthW):$/;"	kind:function	line:24
+video_distance	reranking.py	/^def video_distance(video, location, locW, views, viewsW, date, dateW, length, lengthW, minDistances, maxDistances):$/;"	kind:function	line:46

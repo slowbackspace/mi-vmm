@@ -53,3 +53,11 @@ label.control-label {
 .slider {
     margin-top: 5px;
 }
+
+.video .yt-thumbnail {
+    padding-left: 0px;
+}
+h5.title {
+    margin-top: 0px;
+    margin-bottom: 10px;
+}

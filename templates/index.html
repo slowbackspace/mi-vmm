@@ -1,41 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Landing Page - Start Bootstrap Theme</title>
-
-    <!-- Bootstrap Core CSS -->
-    <link href="static/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="static/css/landing-page.css" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="static/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
-
-    <!-- datepicker -->
-    <link href="static/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet">
-    <link href="static/noUiSlider/nouislider.min.css" rel="stylesheet">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-</head>
-
-<body>
-
+{% extends "base.html" %}
+{% block title %}Youtube Reranking{% endblock %}
+{% block body %}
     <!-- Header -->
     <a name="about"></a>
     <div class="intro-header">
@@ -75,7 +40,7 @@
   <div class="col-xs-4">
       <div class="slider"></div>
       <div class="slider-text text-center">0.0</div>
-       <input type="text" class="slider-input hidden" name="weight-date">
+       <input type="text" class="slider-input hidden" value=0 name="weight-date">
   </div>
 </div>
 <div class="form-group row">
@@ -86,7 +51,7 @@
   <div class="col-xs-4">
       <div class="slider"></div>
       <div class="slider-text text-center">0.00</div>
-      <input type="text" class="slider-input hidden" name="weight-views">
+      <input type="text" class="slider-input hidden" value=0 name="weight-views">
   </div>
 </div>
 <div class="form-group row">
@@ -97,7 +62,7 @@
   <div class="col-xs-4">
       <div class="slider"></div>
       <div class="slider-text text-center">0.00</div>
-      <input type="text" class="slider-input hidden" name="weight-duration">
+      <input type="text" class="slider-input hidden" value=0 name="weight-duration">
   </div>
 </div>
 <div class="form-group row">
@@ -126,7 +91,7 @@
   <div class="col-xs-4">
       <div class="slider"></div>
       <div class="slider-text text-center">0.00</div>
-      <input type="text" class="slider-input hidden" name="weight-location">
+      <input type="text" class="slider-input hidden" value=0 name="weight-location">
   </div>
   <div id="map" style="width: 100%; height: 300px;"></div>
 </div>
@@ -147,26 +112,4 @@
 
     </div>
     <!-- /.intro-header -->
-
-    <!-- Page Content -->
-
-	
-
-    <!-- jQuery -->
-    <script src="static/js/jquery.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="static/js/bootstrap.min.js"></script>
-
-    <script src="static/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
-
-    <script type="text/javascript" src='http://maps.google.com/maps/api/js?sensor=false&libraries=places&key=AIzaSyBv7WKxg-j07nWlHsDzcZfdWx2JLCHzHRY'></script>
-    <script src="static/location-picker/locationpicker.jquery.js"></script>
-
-    <script src="static/noUiSlider/nouislider.min.js"></script>
-    <script src="static/index.js"></script>
-
-
-</body>
-
-</html>
+{% endblock %}

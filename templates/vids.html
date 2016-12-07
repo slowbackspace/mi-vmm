@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Search result{% endblock %}
+
+{% macro render_item(video) -%}
+<div class="row list-group-item video">
+    <div class="col-xs-3 yt-thumbnail">
+            <a href="{{ video.url }}" class="">
+            <img src="{{video.thumbnail}}">
+        </a>
+    </div>
+        
+    <div class="col-xs-9">
+    <h5 class="title"> <a href="{{ video.url }}" class="">{{video.title}}</a></h5>
+    <span class="glyphicon glyphicon-globe"></span> {{ video.location }}<br>
+    <span class="glyphicon glyphicon-play-circle"></span> {{ video.views }} views<br>
+    <span class="glyphicon glyphicon-time"></span> {{ video.length }} seconds<br>
+    <span class="glyphicon glyphicon-calendar"></span> {{ video.date }}<br>
+    </div>
+</div>
+{%- endmacro %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="list-group">
+                {% for video in result[0] %}
+                    {{ render_item(video) }}
+                {% endfor %}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="list-group">
+                {% for video in result[1] %}
+                     {{ render_item(video) }}
+                {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
