@@ -47,13 +47,24 @@ def result_page():
     weight_duration = float(request.form.get("weight-duration"))
     weight_location = float(request.form.get("weight-location"))
 
+    location = (lat, lon)
+
+    if request.form.get("checkbox-location", None):
+        location = None
+    if request.form.get("checkbox-duration", None):
+        duration = None
+    if request.form.get("checkbox-views", None):
+        views = None
+    if request.form.get("checkbox-date", None):
+        date = None
+
     if date:
         datetime_obj = datetime.datetime.strptime(date, "%m/%d/%Y").replace(tzinfo=datetime.timezone.utc)
     else:
         datetime_obj = None
 
     result = reranking.search(keyword=keyword, length=duration, lengthW=weight_duration, views=views,
-                    viewsW=weight_views, location = (lat, lon), locW=weight_location,
+                    viewsW=weight_views, location=location, locW=weight_location,
                     date=datetime_obj, dateW=weight_date)
 
     return render_template("vids.html", result=result)
