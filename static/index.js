@@ -29,7 +29,7 @@ $(document).ready(function(){
 
     function createSlider(element) {
         var slider = noUiSlider.create(element, {
-            start: 0,
+            start: 0.50,
             range: {
                 'min': 0,
                 'max': 1
