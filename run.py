@@ -49,13 +49,13 @@ def result_page():
 
     location = (lat, lon)
 
-    if request.form.get("checkbox-location", None):
+    if not request.form.get("checkbox-location", None):
         location = None
-    if request.form.get("checkbox-duration", None):
+    if not request.form.get("checkbox-duration", None):
         duration = None
-    if request.form.get("checkbox-views", None):
+    if not request.form.get("checkbox-views", None):
         views = None
-    if request.form.get("checkbox-date", None):
+    if not request.form.get("checkbox-date", None):
         date = None
 
     if date:
