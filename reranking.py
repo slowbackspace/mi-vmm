@@ -101,6 +101,7 @@ def search(keyword, location=None, locW=0, views=None, viewsW=0,
                             )
         length_searched = video_result.get("contentDetails", {}).get("duration", None)
         video = {
+            "url": "https://www.youtube.com/watch?v=" + video_result["id"],
             "title": video_result["snippet"]["title"],
             "thumbnail": video_result["snippet"]["thumbnails"]["default"]["url"],
             "location": location_searched,
