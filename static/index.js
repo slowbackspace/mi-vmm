@@ -1,4 +1,11 @@
 $(document).ready(function(){
+    $('input').each(function(i, el) {
+        $(this).prop("disabled", true);
+    })
+    $(':checkbox').each(function(i, el) {
+        $(this).prop("disabled", false);
+    })
+     $("#srch-term").prop("disabled", false);
 
 	var locationPicker = $('#map').locationpicker({
         location: {
@@ -48,5 +55,17 @@ $(document).ready(function(){
     $(".slider").each(function(index, element) {
         createSlider(element);
     })
+
+    $(':checkbox').change(function() {
+        var input = $(this).closest('.row').find('input');
+        if($(this).is(":checked")) {
+            input.prop("disabled", false);
+        }
+        else {
+            input.prop("disabled", true);
+        }
+        $(this).prop("disabled", false); // jeez
+
+    }); 
 
 });

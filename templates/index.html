@@ -10,7 +10,7 @@
                     <div class="intro-message">
                         <h1>Youtube reranking</h1>
                         
-                        <div class="col-md-8 col-md-offset-2">
+                        <div class="col-md-10 col-md-offset-1">
                         
                             <form role="search" method="POST" action="result/">
                         
@@ -27,15 +27,27 @@
                                 <div class="advanced-filters">
                                     <hr class="intro-divider">
 
-<div class="form-group row">
+<div class="form-group row heading">
   <div class="col-xs-1">
-      <input type="checkbox" name="checkbox-date" id="checkbox-date" class="css-checkbox">
+  </div>
+  <div class="col-xs-2">
+  </div>
+  <div class="col-xs-5">
+  </div>
+  <div class="col-xs-4">
+      Weight
+  </div>
+</div>
+
+<div class="form-group row">
+  <div class="col-xs-2 text-center">
+      <input type="checkbox" name="checkbox-date" id="checkbox-date" data-toggle="toggle" class="css-checkbox">
       <label for="checkbox-date" class="css-label"></label>
   </div>
-  <label for="example-date-input" class="col-xs-2 col-form-label">Date</label>
+  <label for="example-date-input" class="col-xs-1 col-form-label">Date</label>
   <div class="col-xs-5">
     <div class="input-group date" id="date" data-provide="datepicker">
-        <input type="text" class="form-control" name="date">
+        <input type="text" class="form-control" placeholder="Pick a day" name="date">
         <div class="input-group-addon">
             <span class="glyphicon glyphicon-th"></span>
         </div>
@@ -49,13 +61,13 @@
 </div>
 
 <div class="form-group row">
-    <div class="col-xs-1">
-        <input type="checkbox" name="checkbox-views" id="checkbox-views" class="css-checkbox">
+    <div class="col-xs-2 text-center">
+        <input type="checkbox" name="checkbox-views" id="checkbox-views" data-toggle="toggle" class="css-checkbox">
         <label for="checkbox-views" class="css-label"></label>
   </div>
-  <label for="example-date-input" class="col-xs-2 col-form-label">Views</label>
+  <label for="example-date-input" class="col-xs-1 col-form-label">Views</label>
   <div class="col-xs-5">
-    <input class="form-control" type="number" placeholder="1000000" name="views" id="example-number-input">
+    <input class="form-control" type="number" placeholder="Number of views" name="views" id="example-number-input">
   </div>
   <div class="col-xs-4">
       <div class="slider"></div>
@@ -64,13 +76,13 @@
   </div>
 </div>
 <div class="form-group row">
-    <div class="col-xs-1">
-      <input type="checkbox" name="checkbox-duration" id="checkbox-duration" class="css-checkbox">
+    <div class="col-xs-2 text-center">
+      <input type="checkbox" name="checkbox-duration" id="checkbox-duration" data-toggle="toggle" class="css-checkbox">
       <label for="checkbox-duration" class="css-label"></label>
   </div>
-  <label for="example-text-input" class="col-xs-2 col-form-label">Duration</label>
+  <label for="example-text-input" class="col-xs-1 col-form-label">Duration</label>
   <div class="col-xs-5">
-    <input class="form-control" type="number" placeholder="42" name="duration" id="example-number-input">
+    <input class="form-control" type="number" placeholder="Duration in seconds" name="duration" id="example-number-input">
   </div>
   <div class="col-xs-4">
       <div class="slider"></div>
@@ -78,7 +90,7 @@
       <input type="text" class="slider-input hidden" value="0.5" name="weight-duration">
   </div>
 </div>
-<div class="form-group row">
+<!--<div class="form-group row">
     <div class="col-xs-1">
 
     </div>
@@ -101,15 +113,22 @@
   <div class="col-xs-4">
      
   </div>
-</div>
+</div>-->
 <div class="form-group row">
-    <div class="col-xs-1">
-      <input type="checkbox" name="checkbox-location" id="checkbox-location" class="css-checkbox">
+    <div class="col-xs-2 text-center">
+      <input type="checkbox" name="checkbox-location" id="checkbox-location" data-toggle="toggle" class="css-checkbox">
       <label for="checkbox-location" class="css-label"></label>
   </div>
-  <label for="example-location-input" class="col-xs-2 col-form-label">Location</label>
+  <label for="example-location-input" class="col-xs-1 col-form-label">Location</label>
   <div class="col-xs-5">
-
+      <div class="row">
+        <div class="col-xs-6">
+            <input class="form-control" name="lat" id="lat">
+        </div>
+        <div class="col-xs-6">
+            <input class="form-control" name="lon" id="lon">
+        </div>
+      </div>
   </div>
   <div class="col-xs-4">
       <div class="slider"></div>
