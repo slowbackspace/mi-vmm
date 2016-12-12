@@ -67,11 +67,10 @@ $(document).ready(function(){
         }
         $(this).prop("disabled", false); // jeez
 
-    }); 
+    });
+
 
     $('#searchForm').on('submit', function() {
-
-        console.log($("#date_input").val());
          if ($("#srch-term").val() == "") 
             return false;
         if ( $("#checkbox-date").is(":checked") &&  $("#date_input").val() == "")
