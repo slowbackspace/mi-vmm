@@ -17,6 +17,9 @@ app.config.update(
 
 
 def parse_float_or_none(value):
+    if not value:
+        return None
+
     if value == "":
         return None
     else:
@@ -24,6 +27,9 @@ def parse_float_or_none(value):
 
 
 def parse_float_or_zero(value):
+    if not value:
+        return None
+        
     if value == "":
         return None
     else:
