@@ -70,14 +70,18 @@ $(document).ready(function(){
     });
 
 
+
+
     $('#searchForm').on('submit', function() {
-         if ($("#srch-term").val() == "") 
+        if ($("#srch-term").val() == "") 
             return false;
         if ( $("#checkbox-date").is(":checked") &&  $("#date_input").val() == "")
             return false;
         if ( $("#checkbox-views").is(":checked") &&  $("#views").val() == "")
             return false;
         if ( $("#checkbox-duration").is(":checked") &&  $("#duration").val() == "")
+            return false;
+        if ( $("#checkbox-location").is(":checked") &&  ($("#lat").val() == "" || $("#lon").val() == ""))
             return false;
      });
 
