@@ -131,11 +131,14 @@ def set_min_max(videos, location, views, date, length, locW, viewsW, dateW, leng
     return minDistances, maxDistances
 
 def get_video(video_result, locW,i):
+    # get location only if locW is set
     location_searched = None if locW==0 else (
                             video_result["recordingDetails"]["location"].get("latitude",None),
                             video_result["recordingDetails"]["location"].get("longitude",None)
                             )
+    # get duration
     length_searched = video_result.get("contentDetails", {}).get("duration", None)
+    # set attributes
     video = {
         "seq" : i,
         "url": "https://www.youtube.com/watch?v=" + video_result["id"],
@@ -152,7 +155,7 @@ def search(keyword, location=None, locW=0, views=None, viewsW=0,
            date=None, dateW=0, length=None, lengthW=0):
     youtube = build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION, 
                     developerKey=DEVELOPER_KEY)
-
+    # set weigth to 0 if attribute is not set
     if location is None or location==(0,0):
         locW = 0
     if views is None:
@@ -187,6 +190,7 @@ def search(keyword, location=None, locW=0, views=None, viewsW=0,
             locW=0
         videos.append(video)
 
+    # set min and max distances
     minDistances, maxDistances = set_min_max(videos, location, views, date, length, locW, viewsW, dateW, lengthW)
 
     unsorted_videos = videos.copy()
