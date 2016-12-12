@@ -48,10 +48,10 @@ def result_page():
     duration = parse_float_or_none(request.form.get("duration"))
     views = parse_float_or_none(request.form.get("views"))
     lat, lon = parse_float_or_none(request.form.get("lat")), parse_float_or_none(request.form.get("lon"))
-    weight_views = float(request.form.get("weight-views"))
-    weight_date = float(request.form.get("weight-date"))
-    weight_duration = float(request.form.get("weight-duration"))
-    weight_location = float(request.form.get("weight-location"))
+    weight_views = float(request.form.get("weight-views", 0))
+    weight_date = float(request.form.get("weight-date", 0))
+    weight_duration = float(request.form.get("weight-duration", 0))
+    weight_location = float(request.form.get("weight-location", 0))
 
     location = (lat, lon)
 
