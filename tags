@@ -20,7 +20,7 @@ build	reranking.py	/^from apiclient.discovery import build$/;"	kind:namespace	li
 cos	reranking.py	/^from math import radians, cos, sin, asin, sqrt$/;"	kind:namespace	line:10
 datetime	reranking.py	/^import datetime$/;"	kind:namespace	line:6
 datetime	run.py	/^import datetime$/;"	kind:namespace	line:8
-favicon	run.py	/^def favicon():$/;"	kind:function	line:64
+favicon	run.py	/^def favicon():$/;"	kind:function	line:75
 find_min_max	reranking.py	/^def find_min_max(value, act_min, act_max):$/;"	kind:function	line:38
 great_circle	reranking.py	/^from geopy.distance import great_circle$/;"	kind:namespace	line:9
 great_circle_distance	reranking.py	/^def great_circle_distance(lat1, lon1, lat2, lon2):$/;"	kind:function	line:21
