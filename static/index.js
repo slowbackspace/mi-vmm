@@ -69,4 +69,9 @@ $(document).ready(function(){
 
     }); 
 
+    $('#searchForm').on('submit', function() {
+         if ($("#srch-term").val() == "" )
+            return false;
+     });
+
 });
