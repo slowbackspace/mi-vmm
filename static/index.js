@@ -56,6 +56,7 @@ $(document).ready(function(){
         createSlider(element);
     })
 
+
     $(':checkbox').change(function() {
         var input = $(this).closest('.row').find('input');
         if($(this).is(":checked")) {
