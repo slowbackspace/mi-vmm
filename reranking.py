@@ -68,14 +68,18 @@ def video_distance(video, location, locW, views, viewsW, date, dateW, length, le
     return (locDistanceNorm * locW + viewsDistanceNorm * viewsW 
             + dateDistanceNorm * dateW + lengthDistanceNorm * lengthW)
 
-def get_videos_response(youtube,keyword,location, locW):
+def get_videos_response(youtube,keyword, maxResults,location,locW):
+    if maxResults > 50:
+        maxResults = 50
+    elif maxResults <1:
+        maxResults = 1
     search_response = youtube.search().list(
         q=keyword,
         type="video",
         part="id,snippet",
         location=None if locW==0 else ",".join(map(str, location)),
         locationRadius=None if locW==0 else "1000km",
-        maxResults=50
+        maxResults=maxResults
     ).execute()
     return search_response  
 
@@ -151,7 +155,7 @@ def get_video(video_result, locW,i):
         }
     return video   
 
-def search(keyword, location=None, locW=0, views=None, viewsW=0, 
+def search(keyword, maxResults=50, location=None, locW=0, views=None, viewsW=0, 
            date=None, dateW=0, length=None, lengthW=0):
     youtube = build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION, 
                     developerKey=DEVELOPER_KEY)
@@ -166,7 +170,7 @@ def search(keyword, location=None, locW=0, views=None, viewsW=0,
         lengthW = 0
 
     # search videos
-    search_response = get_videos_response(youtube,keyword,location,locW)
+    search_response = get_videos_response(youtube,keyword, maxResults,location,locW)
 
     search_videos = []
     # Merge video ids
@@ -203,6 +207,6 @@ def search(keyword, location=None, locW=0, views=None, viewsW=0,
 if __name__ == "__main__":
 
     try:
-        search(keyword="dog", views=100, viewsW=0, lengthW=1, location = (0.0001,0.00001), locW=0.5, date=datetime.datetime.now(datetime.timezone.utc), dateW=0.5)
+        search(keyword="dog", maxResults = 1,views=100, viewsW=0, lengthW=1, location = (0.0001,0.00001), locW=0.5, date=datetime.datetime.now(datetime.timezone.utc), dateW=0.5)
     except HttpError as e:
         print ("An HTTP error %d occurred:\n%s" % (e.resp.status, e.content))
