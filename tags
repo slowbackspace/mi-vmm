@@ -20,24 +20,24 @@ build	reranking.py	/^from apiclient.discovery import build$/;"	kind:namespace	li
 cos	reranking.py	/^from math import radians, cos, sin, asin, sqrt$/;"	kind:namespace	line:10
 datetime	reranking.py	/^import datetime$/;"	kind:namespace	line:6
 datetime	run.py	/^import datetime$/;"	kind:namespace	line:8
-favicon	run.py	/^def favicon():$/;"	kind:function	line:75
+favicon	run.py	/^def favicon():$/;"	kind:function	line:81
 find_min_max	reranking.py	/^def find_min_max(value, act_min, act_max):$/;"	kind:function	line:38
 great_circle	reranking.py	/^from geopy.distance import great_circle$/;"	kind:namespace	line:9
 great_circle_distance	reranking.py	/^def great_circle_distance(lat1, lon1, lat2, lon2):$/;"	kind:function	line:21
-index_page	run.py	/^def index_page():$/;"	kind:function	line:34
+index_page	run.py	/^def index_page():$/;"	kind:function	line:40
 isodate	reranking.py	/^import isodate$/;"	kind:namespace	line:7
 json	run.py	/^import json$/;"	kind:namespace	line:4
 normalize	reranking.py	/^def normalize(value, minX, maxX):$/;"	kind:function	line:33
 os	run.py	/^import os$/;"	kind:namespace	line:3
 parse_float_or_none	run.py	/^def parse_float_or_none(value):$/;"	kind:function	line:19
-parse_float_or_zero	run.py	/^def parse_float_or_zero(value):$/;"	kind:function	line:26
+parse_float_or_zero	run.py	/^def parse_float_or_zero(value):$/;"	kind:function	line:29
 pprint	reranking.py	/^from pprint import pprint$/;"	kind:namespace	line:8
 radians	reranking.py	/^from math import radians, cos, sin, asin, sqrt$/;"	kind:namespace	line:10
 render_template	run.py	/^from flask import render_template, send_from_directory, Response, url_for, request$/;"	kind:namespace	line:6
 request	run.py	/^from flask import render_template, send_from_directory, Response, url_for, request$/;"	kind:namespace	line:6
 reranking	run.py	/^import reranking$/;"	kind:namespace	line:7
 reranking.py	reranking.py	1;"	kind:file	line:1
-result_page	run.py	/^def result_page():$/;"	kind:function	line:39
+result_page	run.py	/^def result_page():$/;"	kind:function	line:45
 run.py	run.py	1;"	kind:file	line:1
 search	reranking.py	/^def search(keyword, location=None, locW=0, views=None, viewsW=0, $/;"	kind:function	line:66
 send_from_directory	run.py	/^from flask import render_template, send_from_directory, Response, url_for, request$/;"	kind:namespace	line:6

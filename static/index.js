@@ -5,7 +5,8 @@ $(document).ready(function(){
     $(':checkbox').each(function(i, el) {
         $(this).prop("disabled", false);
     })
-     $("#srch-term").prop("disabled", false);
+    $("#srch-term").prop("disabled", false);
+    $("#limit").prop("disabled", false);
 
 	var locationPicker = $('#map').locationpicker({
         location: {

@@ -48,6 +48,7 @@ def result_page():
     duration = parse_float_or_none(request.form.get("duration"))
     views = parse_float_or_none(request.form.get("views"))
     lat, lon = parse_float_or_none(request.form.get("lat")), parse_float_or_none(request.form.get("lon"))
+    limit = float(request.form.get("limit", 50))
     weight_views = float(request.form.get("weight-views", 0))
     weight_date = float(request.form.get("weight-date", 0))
     weight_duration = float(request.form.get("weight-duration", 0))
@@ -71,7 +72,7 @@ def result_page():
 
     result = reranking.search(keyword=keyword, length=duration, lengthW=weight_duration, views=views,
                     viewsW=weight_views, location=location, locW=weight_location,
-                    date=datetime_obj, dateW=weight_date)
+                    date=datetime_obj, dateW=weight_date, maxResults=limit)
 
     return render_template("vids.html", result=result)
 
